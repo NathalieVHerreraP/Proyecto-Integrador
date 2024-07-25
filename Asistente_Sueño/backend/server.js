@@ -106,10 +106,8 @@ module.exports = Sonido;
 //Obtener usuario
 app.get("/api/usuario/", async (req, res) => {
     let usuarioData = req.body;
-    console.log(usuarioData)
     try{
         const usuario = await Usuario.find(usuarioData)
-        console.log(usuario)
         if (_.isEmpty(usuario)) {
             res.send(false)
         }else{
@@ -121,12 +119,43 @@ app.get("/api/usuario/", async (req, res) => {
     }
 })
 
-app.post("/api/usuario/", (req, res) => {
+//Insertar Usuario
+app.post("/api/usuario/", async (req, res) => {
     let usuarioInsert = Usuario(req.body);
     try{
-        usuarioInsert.save().then((data) => res.json({"_id": data._id}))
+        let usuarioExist = await Usuario.find(req.body)
+        if (_.isEmpty(usuarioExist)) {
+            usuarioInsert.save().then((data) => res.send(data._id))
+        } else {
+            res.send("Cannot insert, User already exists")
+        }
     }catch(error){
         console.log(error);
     }
 })
 
+//Borrar usuario
+app.delete("/api/usuario", async (req, res) => {
+    let usuarioID = req.body;
+    try{
+        const usuarioDeleted = await Usuario.deleteOne(usuarioID);
+        res.send(true);
+    }catch(error){
+        console.log(error);
+    }
+})
+
+//Actualizar Usuario
+app.put("/api/usuario/:id", async (req,res) => {
+    let usuarioID = req.params.id;
+    let usuarioData = req.body;
+    console.log(usuarioID)
+    try{
+        const usuarioUpdated = await Usuario.findByIdAndUpdate(usuarioID,usuarioData);
+        console.log(usuarioUpdated)
+        res.send(usuarioUpdated._id)
+        
+    }catch(error){
+        console.log(error);
+    } 
+})
