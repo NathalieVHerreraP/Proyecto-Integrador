@@ -44,7 +44,6 @@ const cancionesSchema = new mongoose.Schema({
 })
 
 const movimientoSchema = new mongoose.Schema({
-    idUsuario: String,
     data: [{
         nivel: String,
         fechaHora: Date
@@ -53,27 +52,23 @@ const movimientoSchema = new mongoose.Schema({
 })
 
 const temperaturaSchema = new mongoose.Schema({
-    idUsuario: String,
-    datos: [{
+    data: [{
         temperatura: Number,
         fechaHora: Date
     }]
 })
 
 const alarmasSchema = new mongoose.Schema({
-    idUsuario: String,
     horaDormir: Date,
     horaDespertar: Date,
 })
 
 const satisfaccionSchema = new mongoose.Schema({
-    idUsuario: String,
     calf: Number,
     fecha: Date,
 })
 
 const sonidoSchema = new mongoose.Schema({
-    idUsuario: String,
     data: [{
         sonido: String,
         fechaHora: Date
@@ -266,6 +261,75 @@ app.put("/api/sonido/:id", async (req, res) => {
                     "data": sonidoData
                 }});
             res.send(sonidoUpdated._id)
+        }
+    }catch(error){
+        console.log(error);
+    }
+})
+
+
+//Insertar Alarma
+app.put("/api/alarma/:id", async (req, res) => {
+    const usuarioID = req.params.id;
+    const alarmaData = req.body;
+    alarmaData.horaDormir = new Date(alarmaData.horaDormir)
+    alarmaData.horaDespertar = new Date(alarmaData.horaDespertar)
+    alarmaData._id = usuarioID;
+    try{
+        let usuarioExist = await Alarmas.findById(usuarioID);
+        if (_.isEmpty(usuarioExist)) {
+            let alarmaInsertar = Alarmas(alarmaData)
+            alarmaInsertar.save().then((data) => res.send(data._id))
+        } else {
+            let alarmaUpdated = await Temperatura.findByIdAndUpdate(usuarioID, alarmaData);
+            res.send(alarmaUpdated._id)
+        }
+    }catch(error){
+        console.log(error);
+    }
+})
+
+//Obtener Alarma
+app.get("/api/alarma/:id", async (req, res) => {
+    let usuarioID = req.params.id;
+    try{
+        const alarmaData = await Alarmas.findById(usuarioID)
+        if (_.isEmpty(alarmaData)) {
+            res.send(false)
+        }else{
+            res.json(alarmaData)
+        }
+    }
+    catch(error){
+        console.log(error);
+    }
+})
+
+//Obtener Satisfacción
+app.get("/api/satisfaccion/:id", async (req, res) => {
+    let usuarioID = req.params.id;
+    try{
+        const satisData = await Satisfaccion.findById(usuarioID)            
+        res.send(true)
+
+    }
+    catch(error){
+        res.send(false)
+    }
+})
+
+//Insertar Satisfaccion
+app.post("/api/satisfaccion/:id", async (req, res) => {
+    const usuarioID =req.params.id;
+    const satisBody = req.body;
+    satisBody._id = usuarioID;
+    const satisInsert = Satisfaccion(satisBody);
+    try{
+        let usuarioExist = await Satisfaccion.findById(usuarioID)
+        if (_.isEmpty(usuarioExist)) {
+            satisInsert.save().then((data) => res.send(data._id))
+        } else {
+            res.send(false)
         }
     }catch(error){
         console.log(error);
