@@ -7,7 +7,6 @@ const _ = require('lodash');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
 //inicar el servidor
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`)          //Cuando concatenamos string con variables, se necesita la comilla japonesa `````
@@ -47,9 +46,8 @@ const cancionesSchema = new mongoose.Schema({
 const movimientoSchema = new mongoose.Schema({
     idUsuario: String,
     data: [{
-        nivel: Number,
-        fecha: Date,
-        hora: Date
+        nivel: String,
+        fechaHora: Date
     }]
     
 })
@@ -64,8 +62,8 @@ const temperaturaSchema = new mongoose.Schema({
 
 const alarmasSchema = new mongoose.Schema({
     idUsuario: String,
-    horaDormir: Number,
-    horaDespertar: Number,
+    horaDormir: Date,
+    horaDespertar: Date,
 })
 
 const satisfaccionSchema = new mongoose.Schema({
@@ -77,7 +75,7 @@ const satisfaccionSchema = new mongoose.Schema({
 const sonidoSchema = new mongoose.Schema({
     idUsuario: String,
     data: [{
-        decibeles: Number,
+        sonido: String,
         fechaHora: Date
     }]
     
@@ -127,7 +125,7 @@ app.post("/api/usuario/", async (req, res) => {
         if (_.isEmpty(usuarioExist)) {
             usuarioInsert.save().then((data) => res.send(data._id))
         } else {
-            res.send("Cannot insert, User already exists")
+            res.send(false)
         }
     }catch(error){
         console.log(error);
@@ -158,4 +156,118 @@ app.put("/api/usuario/:id", async (req,res) => {
     }catch(error){
         console.log(error);
     } 
+})
+
+//Obtener Movimiento
+app.get("/api/movimiento/:id", async (req, res) => {
+    let usuarioID = req.params.id;
+    try{
+        const movimientoData = await Movimiento.findById(usuarioID)
+        if (_.isEmpty(movimientoData)) {
+            res.send(false)
+        }else{
+            res.json(movimientoData)
+        }
+    }
+    catch(error){
+        console.log(error);
+    }
+})
+
+//Insertar Movimieto
+app.put("/api/movimiento/:id", async (req, res) => {
+    const usuarioID = req.params.id;
+    const movimientoData = req.body;
+    movimientoData.fechaHora = new Date(movimientoData.fechaHora)
+    try{
+        let usuarioExist = await Movimiento.findById(usuarioID);
+        if (_.isEmpty(usuarioExist)) {
+            let movimientoInsertar = Movimiento({"_id": usuarioID,"data": [movimientoData]})
+            movimientoInsertar.save().then((data) => res.send(data._id))
+        } else {
+            let movimientoUpdated = await Movimiento.findByIdAndUpdate(usuarioID,
+                {$push: { 
+                    "data": movimientoData
+                }});
+            res.send(movimientoUpdated._id)
+        }
+    }catch(error){
+        console.log(error);
+    }
+})
+
+//Obtener Temperatura
+app.get("/api/temperatura/:id", async (req, res) => {
+    let usuarioID = req.params.id;
+    try{
+        const temperaturaData = await Temperatura.findById(usuarioID)
+        if (_.isEmpty(temperaturaData)) {
+            res.send(false)
+        }else{
+            res.json(temperaturaData)
+        }
+    }
+    catch(error){
+        console.log(error);
+    }
+})
+
+//Insertar Temperatura
+app.put("/api/temperatura/:id", async (req, res) => {
+    const usuarioID = req.params.id;
+    const temperaturaData = req.body;
+    temperaturaData.fechaHora = new Date(temperaturaData.fechaHora)
+    try{
+        let usuarioExist = await Temperatura.findById(usuarioID);
+        if (_.isEmpty(usuarioExist)) {
+            let temperaturaInsertar = Temperatura({"_id": usuarioID,"data": [temperaturaData]})
+            temperaturaInsertar.save().then((data) => res.send(data._id))
+        } else {
+            let temperaturaUpdated = await Temperatura.findByIdAndUpdate(usuarioID,
+                {$push: { 
+                    "data": temperaturaData
+                }});
+            res.send(temperaturaUpdated._id)
+        }
+    }catch(error){
+        console.log(error);
+    }
+})
+
+//Obtener Sonido
+app.get("/api/sonido/:id", async (req, res) => {
+    let usuarioID = req.params.id;
+    try{
+        const sonidoData = await Sonido.findById(usuarioID)
+        if (_.isEmpty(sonidoData)) {
+            res.send(false)
+        }else{
+            res.json(sonidoData)
+        }
+    }
+    catch(error){
+        console.log(error);
+    }
+})
+
+//Insertar Sonido
+app.put("/api/sonido/:id", async (req, res) => {
+    const usuarioID = req.params.id;
+    const sonidoData = req.body;
+    sonidoData.fechaHora = new Date(temperaturaData.fechaHora)
+    try{
+        let usuarioExist = await Sonido.findById(usuarioID);
+        if (_.isEmpty(usuarioExist)) {
+            let sonidoInsertar = Sonido({"_id": usuarioID,"data": [sonidoData]})
+            sonidoInsertar.save().then((data) => res.send(data._id))
+        } else {
+            let sonidoUpdated = await Temperatura.findByIdAndUpdate(usuarioID,
+                {$push: { 
+                    "data": sonidoData
+                }});
+            res.send(sonidoUpdated._id)
+        }
+    }catch(error){
+        console.log(error);
+    }
 })

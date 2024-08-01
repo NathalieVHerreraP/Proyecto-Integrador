@@ -29,7 +29,7 @@ const MyStack = () => {
                     headerBackTitleVisible: false}}
             />
 
-<Stack.Screen
+            <Stack.Screen
                 name="registrarse"
                 component={Registrarse}
                 //mostrar titulo
