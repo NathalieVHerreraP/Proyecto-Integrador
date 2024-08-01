@@ -254,7 +254,7 @@ app.get("/api/sonido/:id", async (req, res) => {
 app.put("/api/sonido/:id", async (req, res) => {
     const usuarioID = req.params.id;
     const sonidoData = req.body;
-    sonidoData.fechaHora = new Date(temperaturaData.fechaHora)
+    sonidoData.fechaHora = new Date(sonidoData.fechaHora)
     try{
         let usuarioExist = await Sonido.findById(usuarioID);
         if (_.isEmpty(usuarioExist)) {
