@@ -1,11 +1,11 @@
 import React from "react";
 import {NavigationContainer} from '@react-navigation/native';
-import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import Home from "@/app/(tabs)/home";
 import IniciarSesion from "@/app/(tabs)/iniciarSesion";
 import Registrarse from "@/app/(tabs)/registrarse";
 import ConfigAlarms from "@/app/(tabs)/configAlarmas";
+import IniciarSesionProceso from "@/app/(tabs)/IniciarSesionProceso";
 
 
 const Stack = createNativeStackNavigator();
@@ -26,6 +26,14 @@ const MyStack = () => {
             <Stack.Screen
                 name="iniciarSesion"
                 component={IniciarSesion}
+                //mostrar titulo
+                options={{headerShown: false,
+                    headerBackTitleVisible: false}}
+            />
+            
+            <Stack.Screen
+                name="iniciarSesionProceso"
+                component={IniciarSesionProceso}
                 //mostrar titulo
                 options={{headerShown: false,
                     headerBackTitleVisible: false}}

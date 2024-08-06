@@ -97,7 +97,7 @@ module.exports = Sonido;
 //APIS
 
 //Obtener usuario
-app.get("/api/usuario/", async (req, res) => {
+app.post("/api/getusuario/", async (req, res) => {
     let usuarioData = req.body;
     try{
         const usuario = await Usuario.find(usuarioData)
