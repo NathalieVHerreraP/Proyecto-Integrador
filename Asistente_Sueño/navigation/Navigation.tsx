@@ -6,6 +6,9 @@ import Home from "@/app/(tabs)/home";
 import IniciarSesion from "@/app/(tabs)/iniciarSesion";
 import Registrarse from "@/app/(tabs)/registrarse";
 import ConfigAlarms from "@/app/(tabs)/configAlarmas";
+import FormInput from "@/app/(tabs)/formInput";
+import ConfigDormir from "@/app/(tabs)/configDormir";
+import opciones from "@/app/(tabs)/opciones";
 
 
 const Stack = createNativeStackNavigator();
@@ -46,6 +49,25 @@ const MyStack = () => {
                 options={{headerShown: false,
                     headerBackTitleVisible: false}}
             />
+
+            <Stack.Screen
+                name="configDormir"
+                component={ConfigDormir}
+                //mostrar titulo
+                options={{headerShown: false,
+                    headerBackTitleVisible: false}}
+            />
+
+            
+            <Stack.Screen
+                name="menuPrincipal"
+                component={opciones}
+                //mostrar titulo
+                options={{headerShown: false,
+                    headerBackTitleVisible: false}}
+            />
+
+            
         </Stack.Navigator>
     );
 }
