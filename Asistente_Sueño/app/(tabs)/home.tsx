@@ -9,15 +9,7 @@ export default function Home( {navigation}: any) {
   return (
     <View>
       <ImageBackground source={fondo} resizeMode="cover" style={styles.image}>
-        <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('graficas')}
-        style={styles.buttons}
         
-        >
-          <Text style={styles.buttonText}>Graficas</Text>
-
-        </TouchableOpacity>
         <TouchableOpacity
         onPress={() =>
           navigation.navigate('iniciarSesion')}
