@@ -37,6 +37,7 @@ export default function Home( {navigation}: any) {
           <Text style={styles.buttonText}>Registrarme</Text>
 
         </TouchableOpacity>
+        
       </ImageBackground>
     </View>
   );
