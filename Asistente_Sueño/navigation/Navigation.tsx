@@ -6,6 +6,7 @@ import Home from "@/app/(tabs)/home";
 import IniciarSesion from "@/app/(tabs)/iniciarSesion";
 import Registrarse from "@/app/(tabs)/registrarse";
 import ConfigAlarms from "@/app/(tabs)/configAlarmas";
+import Graficas from "@/app/(tabs)/graficas";
 
 
 const Stack = createNativeStackNavigator();
@@ -42,6 +43,13 @@ const MyStack = () => {
             <Stack.Screen
                 name="configAlarmas"
                 component={ConfigAlarms}
+                //mostrar titulo
+                options={{headerShown: false,
+                    headerBackTitleVisible: false}}
+            />
+            <Stack.Screen
+                name="graficas"
+                component={Graficas}
                 //mostrar titulo
                 options={{headerShown: false,
                     headerBackTitleVisible: false}}
