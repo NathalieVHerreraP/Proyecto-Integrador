@@ -3,6 +3,7 @@ import { Image, ImageBackground, StyleSheet, TextInput, View, Text, TouchableOpa
 import ConfigAlarms from './configAlarmas';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
+import FormInput from './formInput';
 
 
 
@@ -31,21 +32,7 @@ export default function IniciarSesion( {navigation}: any) {
     <View>
       <ImageBackground source={fondo} resizeMode="cover" style={styles.image}>
         <Text style={styles.title}>Iniciar Sesión</Text>
-        {/* <TextInput 
-        style={styles.input} 
-        // onChangeText={onChangeText}
-        // value={text}
-        placeholder='Ingresa tu correo electrónico'
-        keyboardType='email-address'
-        ></TextInput>
 
-        <TextInput 
-        style={styles.input} 
-        // onChangeText={onChangeText}
-        // value={text}
-        placeholder='Ingresa tu contraseña'
-        keyboardType='visible-password'
-        ></TextInput> */}
 
         <Input
           style={styles.input}
@@ -83,6 +70,7 @@ export default function IniciarSesion( {navigation}: any) {
 
         </TouchableOpacity>
 
+
       </ImageBackground>
 
     </View>
@@ -96,7 +84,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: "center",
-    paddingVertical: "20%"
+    paddingVertical: "15%"
   },
   input:{
     color: "#fff",
