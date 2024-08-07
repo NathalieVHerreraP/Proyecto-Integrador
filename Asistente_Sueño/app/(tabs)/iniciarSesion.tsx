@@ -7,7 +7,7 @@ import FormInput from './formInput';
 
 
 
-const fondo = {uri: '../../assets/fondos/fondo2.png'}
+const fondo = { uri: '../../assets/fondos/fondo2.png' }
 
 const list = [
   {
@@ -18,14 +18,14 @@ const list = [
     title: 'Trips',
     icon: 'flight-takeoff'
   },
-   // more items
+  // more items
 ]
 
-  // const [text, onChangeText] = useState('');
+// const [text, onChangeText] = useState('');
 
-export default function IniciarSesion( {navigation}: any) {
+export default function IniciarSesion({ navigation }: any) {
 
- 
+
 
 
   return (
@@ -59,12 +59,12 @@ export default function IniciarSesion( {navigation}: any) {
             />
           }
         />
-        
+
         <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('configAlarmas')}
-        style={styles.buttons}
-        
+          onPress={() =>
+            navigation.navigate('configAlarmas')}
+          style={styles.buttons}
+
         >
           <Text style={styles.buttonText}>Acceder</Text>
 
@@ -78,15 +78,15 @@ export default function IniciarSesion( {navigation}: any) {
 }
 
 const styles = StyleSheet.create({
-  main:{
+  main: {
   },
-  image:{
+  image: {
     flex: 1,
     justifyContent: 'center',
     alignItems: "center",
     paddingVertical: "15%"
   },
-  input:{
+  input: {
     color: "#fff",
     // fontFamily: "Arial",
     fontSize: 25,
@@ -95,14 +95,14 @@ const styles = StyleSheet.create({
     width: "25%",
     borderRadius: 5,
     borderColor: "#fff",
-    backgroundColor:"#3c6575"
+    backgroundColor: "#3c6575"
   },
-  title:{
+  title: {
     fontSize: 30,
     color: "#fff",
     fontWeight: '900',
-  }, 
-  buttons:{
+  },
+  buttons: {
     padding: 5,
     margin: 15,
     backgroundColor: "#fff",
@@ -110,10 +110,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 5,
     shadowColor: "black",
-    
+
 
   },
-  buttonText:{
+  buttonText: {
     // fontFamily: "Arial",
     fontSize: 25
   }

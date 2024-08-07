@@ -18,11 +18,11 @@ const users = [
 ];
 
 
-  
 
-export default function Registrarse( {navigation}: any) {
-    return (
-    
+
+export default function Registrarse({ navigation }: any) {
+  return (
+
     <View style={styles.container}>
       <ImageBackground source={fondo} resizeMode="cover" style={styles.image}>
 
@@ -48,21 +48,18 @@ export default function Registrarse( {navigation}: any) {
                   <Text style={styles.cell}>{user.nocturnalMovement}</Text>
                 </View>
                 <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('home')}
-        style={styles.buttons}
-        
-        >
-
-<Text style={styles.buttonText}>Home</Text>
-
-</TouchableOpacity>
+                  onPress={() =>
+                    navigation.navigate('menuPrincipal')}
+                  style={styles.buttons}
+                >
+                  <Text style={styles.buttonText}>Regresar</Text>
+                </TouchableOpacity>
               </View>
             </View>
-            
-            
+
+
           ))}
-        
+
         </View>
       </ImageBackground>
     </View>
@@ -121,7 +118,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#fff',
   },
-  buttons:{
+  buttons: {
     padding: 5,
     margin: 15,
     backgroundColor: "#fff",
@@ -129,9 +126,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 5,
     shadowColor: "black",
-    
+
   },
-  buttonText:{
+  buttonText: {
     // fontFamily: "Arial",
     fontSize: 25
   }

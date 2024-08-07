@@ -8,12 +8,12 @@ import MyTimePicker from './timePicker'
 
 
 
-export default function opciones( {navigation}: any ) {
+export default function opciones({ navigation }: any) {
 
 
 
-const fondo = {uri: '../../assets/fondos/fondo2.png'}
-const rel = {uri: '../../assets/images/reloj.png'}
+  const fondo = { uri: '../../assets/fondos/fondo2.png' }
+  const rel = { uri: '../../assets/images/reloj.png' }
 
   return (
     <View>
@@ -22,31 +22,39 @@ const rel = {uri: '../../assets/images/reloj.png'}
 
 
         <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('usuario')}
-        style={styles.buttons}
+          onPress={() =>
+            navigation.navigate('usuario')}
+          style={styles.buttons}
         >
           <Text style={styles.buttonText}>Mi información</Text>
         </TouchableOpacity>
 
 
         <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('estadisticas')}
-        style={styles.buttons}
+          onPress={() =>
+            navigation.navigate('graficas')}
+          style={styles.buttons}
         >
           <Text style={styles.buttonText}>Mis estadísticas</Text>
         </TouchableOpacity>
 
-        
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('configAlarmas')}
+          style={styles.buttons}
+        >
+          <Text style={styles.buttonText}>Configurar alarmas</Text>
+        </TouchableOpacity>
 
 
-      
+
+
+
       </ImageBackground>
 
-      
 
-     
+
+
 
 
     </View>
@@ -54,20 +62,20 @@ const rel = {uri: '../../assets/images/reloj.png'}
 }
 
 const styles = StyleSheet.create({
-  main:{
+  main: {
   },
-  image:{
+  image: {
     flex: 1,
     justifyContent: 'center',
     alignItems: "center",
     paddingVertical: "18%"
   },
-  title:{
+  title: {
     fontSize: 30,
     color: "#fff",
     fontWeight: '900',
-  }, 
-  buttons:{
+  },
+  buttons: {
     padding: 5,
     margin: 15,
     backgroundColor: "#fff",
@@ -75,10 +83,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 5,
     shadowColor: "black",
-    
 
-  },  
-  buttonText:{
+
+  },
+  buttonText: {
     // fontFamily: "Arial",
     fontSize: 25
   },

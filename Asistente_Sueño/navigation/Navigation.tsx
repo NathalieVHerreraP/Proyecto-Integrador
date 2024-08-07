@@ -6,7 +6,11 @@ import Home from "@/app/(tabs)/home";
 import IniciarSesion from "@/app/(tabs)/iniciarSesion";
 import Registrarse from "@/app/(tabs)/registrarse";
 import ConfigAlarms from "@/app/(tabs)/configAlarmas";
+import ConfigDormir from "@/app/(tabs)/configDormir";
+import Opciones from "@/app/(tabs)/opciones";
+
 import Usuarios from "@/app/(tabs)/usuarios";
+import Graficas from "@/app/(tabs)/graficas";
 
 const Stack = createNativeStackNavigator();
 
@@ -53,9 +57,19 @@ const MyStack = () => {
                 }}
             />
 
-<Stack.Screen
-                name="usuarios"
+            <Stack.Screen
+                name="usuario"
                 component={Usuarios}
+                //mostrar titulo
+                options={{
+                    headerShown: false,
+                    headerBackTitleVisible: false
+                }}
+            />
+
+            <Stack.Screen
+                name="graficas"
+                component={Graficas}
                 //mostrar titulo
                 options={{
                     headerShown: false,
@@ -74,7 +88,7 @@ const MyStack = () => {
 
             <Stack.Screen
                 name="menuPrincipal"
-                component={opciones}
+                component={Opciones}
                 //mostrar titulo
                 options={{
                     headerShown: false,
